@@ -8,7 +8,13 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const app = express();
 
 // --- MIDDLEWARE ---
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173' }));
+app.use(cors({
+  origin: [
+    'http://localhost:5173',                      // For local testing
+    'https://creators-dashboard-xi.vercel.app'    // <--- Your LIVE Vercel Domain
+  ],
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 // --- 1. GEMINI AI INTEGRATION ---
